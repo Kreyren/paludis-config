@@ -1,0 +1,5 @@
+CHOST="x86_64-pc-linux-gnu"
+i686_pc_linux_gnu_CFLAGS="-O2 -march=sandybridge -pipe"
+i686_pc_linux_gnu_CXXFLAGS="-O2 -march=sandybridge -pipe"
+x86_64_pc_linux_gnu_CFLAGS="-O2 -march=sandybridge -pipe"
+x86_64_pc_linux_gnu_CXXFLAGS="-O2 -march=sandybridge -pipe"
