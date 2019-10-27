@@ -7,7 +7,7 @@
 
 # Export edebug
 # TODO: Not exported in this stage
-require exdebug
+#require exdebug
 
 if [ "$DEBUG_INIT" != kreyren ]; then
 	ewarn "Exlib 'exdebug' from kreyren is not sourced, debugging messages are set on default"
