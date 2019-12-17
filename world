@@ -1,0 +1,24 @@
+app-editors/vim
+sys-apps/openrc
+sys-auth/ConsoleKit2
+sys-apps/util-linux
+sys-libs/pam
+sys-boot/grub
+
+# WM
+x11-wm/openbox
+x11-misc/tint2
+
+# DM
+x11-apps/xinit
+
+# Browser
+#net-www/firefox
+
+# Misc
+net-irc/hexchat
+
+# Not sorted
+sys-boot/dracut
+sys-fs/btrfs-progs
+sys-boot/os-prober
