@@ -21,3 +21,4 @@ sys-kernel/linux-headers
 sys-apps/paludis
 x11-apps/flameshot
 net-misc/wireguard
+net-www/firefox
