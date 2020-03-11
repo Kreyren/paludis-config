@@ -10,7 +10,7 @@ x11-misc/tint2
 # DM
 x11-apps/xinit
 # Browser
-#net-www/firefox
+net-www/firefox
 # Misc
 net-irc/hexchat
 # Not sorted
@@ -20,5 +20,3 @@ sys-boot/os-prober
 sys-kernel/linux-headers
 sys-apps/paludis
 x11-apps/flameshot
-net-misc/wireguard
-net-www/firefox
