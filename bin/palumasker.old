@@ -1,0 +1,25 @@
+#!/usr/bin/awk -f
+# Created by Kumool based on original regular expression provided by Jacob Hrbek <kreyren@rixotstudio.cz> for Jacob Hrbek <kreyren@rixotstudio.cz> in 2020 under GPL-3 license <https://www.gnu.org/licenses/gpl-3.0.en.html>
+
+# This is an AWK script that expects stout of 'cave resolve pkg' to create unmasks in /etc/paludis/platforms.conf
+# Example usage: 'cave resolve world -c | palumasker'
+# Example output: 'sys-apps/paludis:0::arbor ~amd64'
+
+index($0,"I encountered the following errors:") {e++;next}
+e && /^!\s{3}[^\/]+\/.+$/ {pkg=$2;x=1;next}
+
+e && match($0,/:[0-9]+::arbor$/) && x==1 {
+	 x++; arbor= substr($0,RSTART,RLENGTH);next
+ }
+
+ e && /Supported platforms ~amd64/ && x==2 {
+	  x=0
+	   print pkg arbor " " $3
+	    pkg=arbor=""
+	     next
+     }
+
+   index($0,"I cannot proceed without being permitted to do the following:") {b++;e--}
+
+     b && /^(n|r)\s{3}[^/]+\/[^:]+:[0-9]+::\w+/ {m=$2}
+     b && m && /Supported platforms ~amd64/ {print m " ~amd64";m=""}

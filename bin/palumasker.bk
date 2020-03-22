@@ -1,0 +1,35 @@
+#!/usr/bin/awk -f
+
+# awk -f ./kreyren.awk kreyren-input1 | wc -l
+
+# run me as  pipe | prog.awk
+# or prog.awk textfile
+
+!e && /^I encountered the following errors:$/ {
+ e++ # set e to 1, e is error section
+ next # don't do anything else
+}
+
+# if e is defined (which is error section) and line/ matches regex, set pkg to $2
+# $2 is the second field in line/record
+e && /^!/ {pkg=$2;next}
+
+# match sets RSTART and RLENGTH to whatever it matches
+e && pkg && /:[^:]+::installed$/ { installed = $2;next }
+e && installed && match($0,/:[^:]+::[^:]+$/) {
+ arbor= substr($0,RSTART,RLENGTH) # substr extracts a section from the current string
+ installed=0
+ next
+}
+
+e && arbor && /Supported platforms ~amd64/ {
+ print pkg arbor " " $3
+ pkg=arbor="" # set both pkg and arbor to "" which means empty
+ next
+}
+
+# Second section of text
+/I cannot proceed without being permitted to do the following:/ {e=0;e2++;next}
+
+e2 && /^n   [^/]+\/[^:]+:[0-9]+::/ {pkg=$2}
+e2 && pkg && /Supported platforms ~amd64/ {print pkg " ~amd64";m=""}
