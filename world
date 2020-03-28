@@ -1,27 +1,20 @@
-#app-editors/vim
-#sys-apps/openrc
-#sys-auth/ConsoleKit2
-#sys-apps/util-linux
-#sys-libs/pam
-#sys-boot/grub
+# CORE
+app-editors/vim
+sys-boot/grub
+sys-apps/paludis
+x11-server/xorg-server
+sys-apps/eudev
+dev-scm/git
+sys-apps/openrc
+x11-dri/mesa
 # WM
 #x11-wm/openbox
 #x11-misc/tint2
 # DM
-#x11-apps/xinit
+x11-apps/xinit
 # Browser
-#net-www/firefox
+net-www/firefox
 # Misc
-#net-irc/hexchat
-# Not sorted
-#sys-boot/dracut
-#sys-fs/btrfs-progs
-#sys-boot/os-prober
-#sys-kernel/linux-headers
-#sys-apps/paludis
-#x11-apps/flameshot
-#sys-apps/eudev
-#dev-libs/libxml2
-dev-scm/git
-dev-libs/libxml2
-sys-apps/openrc
+net-irc/hexchat
+x11-apps/flameshot
+app-emulation/wine

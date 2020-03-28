@@ -1,0 +1,21 @@
+# FIXME: Paludis does not recognize packages by slot and origin -> This causes unnecesary resolving of packages that does not need to be resolved
+
+# CORE
+app-editors/vim:0::arbor
+sys-boot/grub:0::arbor
+sys-apps/paludis:0::arbor
+x11-server/xorg-server:0::x11
+sys-apps/eudev:0::arbor
+dev-scm/git:0::arbor
+sys-apps/openrc:0::hasufell
+# WM
+#x11-wm/openbox:0::python
+#x11-misc/tint2:0::exheredrey
+# DM
+#x11-apps/xinit
+# Browser
+#net-www/firefox:0::desktop
+# Misc
+#net-irc/hexchat
+#x11-apps/flameshot:0::platypus
+#app-emulation/wine:0::virtualization

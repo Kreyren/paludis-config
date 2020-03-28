@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Created by Jacob Hrbek <kreyren@rixotstudio.cz> under GPL-3 license <https://www.gnu.org/licenses/gpl-3.0.en.html> in 2020
+
+packageNukeFile="/etc/paludis/package_nuke.bash"
+
+die() { # Simplified assertion
+  case "$1" in
+    1) printf 'INFO: %s\n' "$2" ;;
+    [2-255]) printf 'FATAL: %s\n' "$2" ;;
+    *) printf 'UNEXPECTED: %s\n' "Unexpected happend while processing '${FUNCNAME[0]}' function" ; exit 255
+  esac
+
+  exit "$1"
+}
+
+echo kreyren_test
+
+# Skip this in case the package_nuke.bash does not exists
+[ ! -e "$packageNukeFile" ] && die 0 "File '$packageNukeFile' does not exists, skipping pkgnuker"
+
+# Process packages and exclude comments
+for pkg in $(grep -vP "^#.*" "$packageNukeFile"); do
+  if cave print-ids -m '*/*::/' | grep -qo "$pkg"; then
+    # CORE - Nuke the unwanted
+    cave uninstall "$pkg" -x || die 1 "Unable to uninstall package '$pkg'"
+  fi
+done
