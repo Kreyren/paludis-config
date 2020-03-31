@@ -43,7 +43,7 @@ exfixme() {
 die() {
 	case "$1" in
 		# FIXME: Add standardization for exit codes
-		[1-255]) printf 'FATAL: %s\n' "$2" ;;
+		[1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]) printf 'FATAL: %s\n' "$2" ;;
 		*)
 			exfixme "Package $PNVR is using die() function without specified exit code"
 			printf 'FATAL: %s\n' "$1"
