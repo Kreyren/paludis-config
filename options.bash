@@ -75,4 +75,5 @@ checkpkg "^x11-server\/xorg-server\$" && printf '%s\n' \
 
 # WINE
 checkpkg "^app-emulation\/wine\$" && printf '%s\n' \
+	"dev-libs/libxml2:2.0::arbor[=2.9.10-r1] python" \
 	"app-emulation/wine:0::virtualization mono opengl sdl staging" || true
