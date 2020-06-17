@@ -1,6 +1,8 @@
 # NOTICE(Krey): This is configured to apply use flags based on presence in world file
 # NOTICE(Krey): Priority is declared depending on the order -> Configuration on EOF overwrites the configuration on BOF
 
+# shellcheck shell=bash
+
 # FIXME(Krey)-QA: '|| true' is a hotfix
 
 worldFile="/etc/paludis/world"
@@ -12,9 +14,9 @@ checkpkg() { grep -qP "$1" "$worldFile" ;}
 # Flameshot
 checkpkg "^x11-apps\/flameshot\$" && printf '%s\n' \
 	"x11-libs/libxkbcommon:0::x11[=0.9.1] X" \
-	"x11-libs/qtbase:5::x11[=5.14.1] sql sqlite gui" \
+	"x11-libs/qtbase:5::x11[>=5.14.1] sql sqlite gui" \
 	"x11-dri/mesa:0::x11 X" \
-	"x11-libs/qttools:5::x11[>=5.12.7] gui" || true
+	"x11-libs/qttools:5::x11[>=5.12.7] gui sql sqlite" || true
 
 # tint2
 checkpkg "^x11-misc\/tint2\$" && printf '%s\n' \
@@ -26,17 +28,21 @@ checkpkg "^x11-misc\/tint2\$" && printf '%s\n' \
 
 # GIMP
 checkpkg "^media-gfx\/gimp\$" && printf '%s\n' \
+	"app-text/poppler:0::x11[=0.88.0] cairo glib" \
 	"media-gfx/gimp aalib alsa heif hdr jpeg2000 mng webp wmf" || true
 
 # Firefox
 ## FIXME: Why do we need wayland
+## FIXME: LTO requires eclectic changes 'Clang and lld are required to build firefox with cross-language LTO enabled'
+## FIXME: Does not build rustlang dep
 checkpkg "^net-www\/firefox\$" && printf '%s\n' \
-	"x11-libs/gtk+:3::x11[=3.24.14] wayland" \
+	"x11-libs/gtk+:3::x11[=3.24.14] X -wayland" \
 	"x11-libs/cairo:0::x11[=1.16.0] X" \
-	"x11-dri/mesa:0::x11[=19.3.5] X wayland valgrind zstd" \
+	"x11-dri/mesa:0::x11[=19.3.5] X -wayland valgrind zstd" \
 	"dev-lang/python:3.7::arbor[=3.7.7] sqlite" \
 	"dev-lang/python:2.7::arbor[=2.7.17] sqlite" \
-	"net-www/firefox:0::desktop[=74.0] alsa eme lto pgo" || true
+	"x11-libs/libxkbcommon:0::x11[=0.9.1-r1] X" \
+	"net-www/firefox:0::desktop[=74.0] alsa eme -lto pgo" || true
 
 # Paludis
 ## FIXME: test failure - 20 - gtest_throw_on_failure_ex_test (Child aborted)
@@ -49,12 +55,12 @@ checkpkg "^sys-apps\/paludis\$" && printf '%s\n' \
 
 # GIT
 checkpkg "^dev-scm\/git\$" && printf '%s\n' \
-	"dev-scm/git curl" || true
+	"dev-scm/git webdav curl" || true
 
 # MESA
 ## Stub for expected flags
 checkpkg "^x11-dri\/mesa\$" && printf '%s\n' \
-	"x11-dri/mesa:0::x11 -X d3d9 llvm valgrind VIDEO_DRIVERS: gallium-swrast" \
+	"x11-dri/mesa:0::x11 X d3d9 llvm valgrind VIDEO_DRIVERS: gallium-swrast" \
 	"dev-libs/libglvnd:0::x11[=1.3.0-r1] X" \
 	"dev-libs/libglvnd:0::x11[=1.3.1] X" \
 	"dev-libs/libepoxy:0::x11[>=1.5.4-r2] X" \

@@ -12,7 +12,7 @@
 ###! By default PALUDIS_PATCHDIR is using /etc/paludis/patches for definitions
 ###! This depends on functions defined in PaludisDir/bashrc for output
 
-# FIXME: Check for expected shell
+# FIXME: Csheck for expected shell
 # Define where do we look for patches
 patchfile=(
 	"$PALUDIS_PATCHDIR/$CATEGORY/$PN/*.patch"

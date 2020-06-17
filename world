@@ -1,3 +1,43 @@
+# Repositories
+repository/accounts
+repository/arbor
+repository/bruners
+repository/compnerd
+repository/danyspin97
+repository/desktop
+repository/exheredrey
+repository/exony
+repository/games
+repository/gnome
+repository/graveyard
+repository/hardware
+repository/haskell-unofficial
+repository/hasufell
+repository/heirecka
+repository/ingmar
+repository/installed_accounts
+repository/installed
+repository/java
+repository/kde
+repository/media
+repository/mono
+repository/net
+repository/ocaml-unofficial
+repository/office
+repository/perl
+repository/platypus
+repository/python
+repository/rbrown
+repository/repository
+repository/rust
+repository/tombriden
+repository/unavailable
+repository/unavailable-unofficial
+repository/unpackaged
+repository/unwritten
+repository/vim
+repository/virtualization
+repository/x11
 # CORE
 app-editors/vim
 sys-boot/grub
@@ -13,8 +53,15 @@ x11-dri/mesa
 # DM
 x11-apps/xinit
 # Browser
-net-www/firefox
+# FIXME: Requires wayland for some reason
+#net-www/firefox
 # Misc
+media-gfx/gimp
 net-irc/hexchat
 x11-apps/flameshot
 app-emulation/wine
+app-virtualization/virtualbox-bin
+app-editors/emacs
+app-misc/ca-certificates
+net-misc/iputils
+net-misc/youtube-dl
